@@ -40,7 +40,7 @@ This is the Flutter application which show image of the Chunk Norris and his jok
 ## Code 
 
 
-___Fetch data with API___ 
+___Fetch data with http lib___ 
 ```
 Future<Joke> getHttp() async {
   var response =
