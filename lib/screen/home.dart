@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:math';
 
 import 'package:courses/screen/widget/bottom.dart';
@@ -39,6 +40,7 @@ class JokePage extends StatefulWidget {
 class _JokePageState extends State<JokePage> {
   late Future<Joke> information1;
   late Future<Joke> information2;
+  late List<Future<Joke>> favoriteJoke;
   late int count = 0;
   static const List<String> images = [
     "assets/images/chuck1.jpg",
@@ -55,11 +57,18 @@ class _JokePageState extends State<JokePage> {
     information2 = getHttp();
     position = Random().nextInt(4);
     next = Random().nextInt(4);
+    favoriteJoke = [];
   }
 
-  void update() {
+
+  void update(bool fav) {
     position = next;
     next = Random().nextInt(4);
+    if(fav){
+      favoriteJoke.add((count % 2 == 0) ? information1 : information2);
+    }
+    print(favoriteJoke.length);
+    print(favoriteJoke);
     setState(() {
       if (count % 2 == 0) {
         information1 = getHttp();
@@ -89,8 +98,12 @@ class _JokePageState extends State<JokePage> {
                 color: position,
                 path: images[position],
               ),
-              onDismissed: (direction) {
-                update();
+              onDismissed: (DismissDirection direction) {
+                if(direction == DismissDirection.startToEnd){
+                  update(false);
+                } else {
+                  update(true);
+                }
               },
             ),
           ],

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class BottomPart extends StatelessWidget {
-  final Function() updateCallback;
+  final Function(bool fav) updateCallback;
 
   const BottomPart({Key? key, required this.updateCallback}) : super(key: key);
 
@@ -18,7 +18,7 @@ class BottomPart extends StatelessWidget {
             borderRadius: BorderRadius.circular(15),
           ),
           child: ElevatedButton(
-            onPressed: updateCallback,
+            onPressed: () => {  updateCallback(true) },
             style: ButtonStyle(
                 shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                     RoundedRectangleBorder(
@@ -44,7 +44,7 @@ class BottomPart extends StatelessWidget {
             borderRadius: BorderRadius.circular(15),
           ),
           child: ElevatedButton(
-            onPressed: updateCallback,
+            onPressed: () => { updateCallback(false) },
             style: ButtonStyle(
                 shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                     RoundedRectangleBorder(
