@@ -8,28 +8,49 @@ import 'package:flutter/material.dart';
 
 import '../main.dart';
 import '../model/Joke.dart';
+import 'favorite.dart';
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class Home extends StatefulWidget {
+  const Home({Key? key}) : super(key: key);
+
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+
+  List<Widget> buildBody = <Widget>[
+      JokePage(),
+      LikeJoke(fav: [],),
+  ];
+  int index = 0;
+
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(primaryColor: Colors.lightBlue),
-      home: Scaffold(
+    return  Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
           actions: const [MyDialog()],
           title: const Text('Chucks joke'),
         ),
-        body: const SafeArea(child: JokePage()),
-        // bottomNavigationBar: BottomNavigationBar(
-        //   items: [
-        //
-        //   ],
-        // ),
-      ),
+        body: const SafeArea(
+            child: buildBody.elementAt(index)
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          currentIndex: index,
+          unselectedItemColor: Colors.indigoAccent,
+          items: [
+            BottomNavigationBarItem(
+                icon: Icon(Icons.home),
+                label: 'home',
+            ),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.monitor_heart),
+                label: 'liked',
+            ),
+          ],
+        ),
     );
   }
 }
