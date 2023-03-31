@@ -11,6 +11,22 @@ class LikeJoke extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      child: ListView.builder(
+          itemCount: fav.length,
+          itemBuilder: (BuildContext context, int index) {
+            return FutureBuilder(
+                future: fav[index],
+                builder: (context, snapshot) {
+                  if(snapshot.hasData){
+                    return Text(snapshot.data!.value);
+                  } else if(snapshot.hasError) {
+                    return Text("Error ${snapshot.error}");
+                  }
+                  return const Text("Loading...");
+                }
+            );
+          }
+      ),
     );
   }
 }

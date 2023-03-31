@@ -24,6 +24,11 @@ class MyApp extends StatelessWidget {
           title: const Text('Chucks joke'),
         ),
         body: const SafeArea(child: JokePage()),
+        // bottomNavigationBar: BottomNavigationBar(
+        //   items: [
+        //
+        //   ],
+        // ),
       ),
     );
   }
