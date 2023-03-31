@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class BottomPart extends StatelessWidget {
-  final updateCallback;
+  final Function() updateCallback;
 
   const BottomPart({Key? key, required this.updateCallback}) : super(key: key);
 

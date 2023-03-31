@@ -10,7 +10,7 @@ class Information extends StatelessWidget {
     Colors.yellow,
     Colors.orange,
   ];
-  final color;
+  final int color;
   final String path;
 
   const Information({Key? key, required this.information, required this.color, required this.path})

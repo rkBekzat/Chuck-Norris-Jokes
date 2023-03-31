@@ -2,23 +2,22 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'Joke.g.dart';
 
-// don't change names of variable cause it's name of variables of json which extract by API
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class Joke {
   var categories = [];
-  var created_at = "";
-  var icon_url = "";
+  var createdAt = "";
+  var iconUrl = "";
   var id = "";
-  var updated_at = "";
+  var updatedAt = "";
   var url = "";
   var value = "";
 
   Joke(
       {required this.categories,
-      required this.created_at,
-      required this.icon_url,
+      required this.createdAt,
+      required this.iconUrl,
       required this.id,
-      required this.updated_at,
+      required this.updatedAt,
       required this.url,
       required this.value});
 
