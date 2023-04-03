@@ -1,10 +1,12 @@
 import 'dart:async';
 import 'dart:math';
 
+import 'package:courses/model/LikedJoke.dart';
 import 'package:courses/screen/widget/bottom.dart';
 import 'package:courses/screen/widget/dialog_button.dart';
 import 'package:courses/screen/widget/information.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 
 import '../main.dart';
 import '../model/Joke.dart';
@@ -21,7 +23,7 @@ class _HomeState extends State<Home> {
 
   List<Widget> buildBody = <Widget>[
       JokePage(),
-      LikeJoke(fav: [getHttp(), getHttp(), getHttp()],),
+      LikeJoke(),
   ];
   int index = 0;
 
@@ -29,6 +31,12 @@ class _HomeState extends State<Home> {
     setState(() {
       index = selectedIndex;
     });
+  }
+
+  @override
+  void dispose() {
+    Hive.close();
+    super.dispose();
   }
 
 
@@ -96,6 +104,10 @@ class _JokePageState extends State<JokePage> {
     position = next;
     next = Random().nextInt(4);
     if(fav){
+      Box box = Hive.box<LikedJoke>('likedJoke');
+      final likes = LikedJoke()
+        ..joke = (count % 2 == 0) ? information1 : information2;
+      box.add(likes);
       favoriteJoke.add((count % 2 == 0) ? information1 : information2);
     }
     print(favoriteJoke.length);
