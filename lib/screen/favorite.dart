@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../model/Joke.dart';
@@ -14,7 +15,17 @@ class LikeJoke extends StatelessWidget {
       child: ListView.builder(
           itemCount: fav.length,
           itemBuilder: (BuildContext context, int index) {
-            return FutureBuilder(
+            return Container(
+                margin: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                padding: EdgeInsets.all(15),
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.black12,
+                    width: 2,
+                  ),
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: FutureBuilder(
                 future: fav[index],
                 builder: (context, snapshot) {
                   if(snapshot.hasData){
@@ -24,7 +35,7 @@ class LikeJoke extends StatelessWidget {
                   }
                   return const Text("Loading...");
                 }
-            );
+            ));
           }
       ),
     );

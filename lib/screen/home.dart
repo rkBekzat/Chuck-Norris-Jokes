@@ -21,7 +21,7 @@ class _HomeState extends State<Home> {
 
   List<Widget> buildBody = <Widget>[
       JokePage(),
-      LikeJoke(fav: [],),
+      LikeJoke(fav: [getHttp(), getHttp(), getHttp()],),
   ];
   int index = 0;
 
