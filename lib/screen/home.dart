@@ -25,6 +25,12 @@ class _HomeState extends State<Home> {
   ];
   int index = 0;
 
+  void choose(int selectedIndex){
+    setState(() {
+      index = selectedIndex;
+    });
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -34,12 +40,11 @@ class _HomeState extends State<Home> {
           actions: const [MyDialog()],
           title: const Text('Chucks joke'),
         ),
-        body: const SafeArea(
-            child: buildBody.elementAt(index)
-        ),
+        body: buildBody.elementAt(index),
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: index,
           unselectedItemColor: Colors.indigoAccent,
+          onTap: choose,
           items: [
             BottomNavigationBarItem(
                 icon: Icon(Icons.home),
