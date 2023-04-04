@@ -1,4 +1,4 @@
-import 'package:courses/model/LikedJoke.dart';
+import 'package:courses/model/Joke.dart';
 import 'package:courses/screen/home.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -22,8 +22,8 @@ Future<Joke> getHttp() async {
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
-  Hive.registerAdapter(LikedJokeAdapter());
-  await Hive.openBox<LikedJoke>("likedJoke");
+  Hive.registerAdapter(JokeAdapter());
+  await Hive.openBox<Joke>("Joke");
 
   runApp(const MyApp());
 }

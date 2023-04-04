@@ -1,8 +1,9 @@
 import 'dart:async';
 import 'dart:math';
 
-import 'package:courses/model/LikedJoke.dart';
+import 'package:courses/model/Joke.dart';
 import 'package:courses/screen/widget/bottom.dart';
+import 'package:courses/screen/widget/boxes.dart';
 import 'package:courses/screen/widget/dialog_button.dart';
 import 'package:courses/screen/widget/information.dart';
 import 'package:flutter/material.dart';
@@ -33,11 +34,6 @@ class _HomeState extends State<Home> {
     });
   }
 
-  @override
-  void dispose() {
-    Hive.close();
-    super.dispose();
-  }
 
 
   @override
@@ -100,14 +96,17 @@ class _JokePageState extends State<JokePage> {
   }
 
 
-  void update(bool fav) {
+  void update(bool fav) async  {
     position = next;
     next = Random().nextInt(4);
     if(fav){
-      Box box = Hive.box<LikedJoke>('likedJoke');
-      final likes = LikedJoke()
-        ..joke = (count % 2 == 0) ? information1 : information2;
-      box.add(likes);
+      Box box = Boxes.getLikedJokes();
+      final like = (count % 2 == 0) ? information1 : information2;
+
+      box.add(await like);
+      print("After ADD: \n");
+      print(box.values);
+      print("\n");
       favoriteJoke.add((count % 2 == 0) ? information1 : information2);
     }
     print(favoriteJoke.length);

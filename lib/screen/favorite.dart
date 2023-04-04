@@ -1,4 +1,5 @@
-import 'package:courses/model/LikedJoke.dart';
+import 'package:courses/model/Joke.dart';
+import 'package:courses/screen/widget/boxes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
@@ -11,10 +12,10 @@ class LikeJoke extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: ValueListenableBuilder<Box<LikedJoke>>(
-        valueListenable: Hive.box<LikedJoke>('likedJoke').listenable(),
+      child: ValueListenableBuilder<Box<Joke>>(
+        valueListenable: Boxes.getLikedJokes().listenable(),
         builder: (context, box, _){
-          final likes = box.values.toList().cast<LikedJoke>();
+          final likes = box.values.toList().cast<Joke>();
           print("LISTS:\n");
           print(likes);
           print("\n");
@@ -24,7 +25,7 @@ class LikeJoke extends StatelessWidget {
     );
   }
 
-  Widget buildContent(List<LikedJoke> likes){
+  Widget buildContent(List<Joke> likes){
     return ListView.builder(
         itemCount: likes.length,
         itemBuilder: (BuildContext context, int index) {
@@ -38,17 +39,8 @@ class LikeJoke extends StatelessWidget {
                 ),
                 borderRadius: BorderRadius.circular(20),
               ),
-              child: FutureBuilder(
-              future: likes[index].joke,
-              builder: (context, snapshot) {
-                if(snapshot.hasData){
-                  return Text(snapshot.data!.value);
-                } else if(snapshot.hasError) {
-                  return Text("Error ${snapshot.error}");
-                }
-                return const Text("Loading...");
-              }
-          ));
+              child: Text(likes[index].value),
+          );
         }
     );
   }
