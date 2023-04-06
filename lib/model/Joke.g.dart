@@ -17,7 +17,7 @@ class JokeAdapter extends TypeAdapter<Joke> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Joke(
-      categories: (fields[0] as List).cast<dynamic>(),
+      categories: (fields[0] as List).cast<String>(),
       createdAt: fields[1] as String,
       iconUrl: fields[2] as String,
       id: fields[3] as String,
@@ -63,7 +63,9 @@ class JokeAdapter extends TypeAdapter<Joke> {
 // **************************************************************************
 
 Joke _$JokeFromJson(Map<String, dynamic> json) => Joke(
-      categories: json['categories'] as List<dynamic>,
+      categories: (json['categories'] as List<dynamic>)
+          .map((e) => e as String)
+          .toList(),
       createdAt: json['created_at'] as String,
       iconUrl: json['icon_url'] as String,
       id: json['id'] as String,

@@ -1,23 +1,12 @@
 import 'package:courses/model/Joke.dart';
 import 'package:courses/screen/home.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'bloc/joke_bloc.dart';
 import 'model/Joke.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-
-Future<Joke> getHttp() async {
-  var response =
-      await http.get(Uri.https('api.chucknorris.io', '/jokes/random'));
-  if (response.statusCode == 200) {
-    var result = jsonDecode(response.body);
-    return Joke.fromJson(result);
-  } else {
-    throw Exception("Bad connection try again");
-  }
-}
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -36,7 +25,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primaryColor: Colors.lightBlue),
-      home: Home(),
+      home: BlocProvider<JokeBloc>(
+        create: (context) => JokeBloc(),
+        child: Home(),
+      ),
     );
   }
 }

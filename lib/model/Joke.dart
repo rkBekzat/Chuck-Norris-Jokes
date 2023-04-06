@@ -7,19 +7,19 @@ part 'Joke.g.dart';
 @HiveType(typeId: 0)
 class Joke {
   @HiveField(0)
-  var categories = [];
+  final List<String> categories;
   @HiveField(1)
-  var createdAt = "";
+  final String createdAt ;
   @HiveField(2)
-  var iconUrl = "";
+  final String iconUrl ;
   @HiveField(3)
-  var id = "";
+  final String id ;
   @HiveField(4)
-  var updatedAt = "";
+  final String updatedAt ;
   @HiveField(5)
-  var url = "";
+  final String url ;
   @HiveField(6)
-  var value = "";
+  final String value ;
 
   Joke(
       {required this.categories,

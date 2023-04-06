@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../bloc/joke_bloc.dart';
+
 
 class BottomPart extends StatelessWidget {
-  final Function(bool fav) updateCallback;
 
-  const BottomPart({Key? key, required this.updateCallback}) : super(key: key);
+  const BottomPart({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final jokeBloc = BlocProvider.of<JokeBloc>(context);
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -18,7 +22,7 @@ class BottomPart extends StatelessWidget {
             borderRadius: BorderRadius.circular(15),
           ),
           child: ElevatedButton(
-            onPressed: () => {  updateCallback(true) },
+            onPressed: () => {  },
             style: ButtonStyle(
                 shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                     RoundedRectangleBorder(
@@ -44,7 +48,7 @@ class BottomPart extends StatelessWidget {
             borderRadius: BorderRadius.circular(15),
           ),
           child: ElevatedButton(
-            onPressed: () => { updateCallback(false) },
+            onPressed: () => { jokeBloc.add(SkipJoke()) },
             style: ButtonStyle(
                 shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                     RoundedRectangleBorder(
