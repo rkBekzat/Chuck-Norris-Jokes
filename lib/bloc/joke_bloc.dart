@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -21,12 +22,12 @@ class JokeBloc extends Bloc<JokeEvent, JokeState> {
   _addJoke(AddJoke event, Emitter<JokeState> emit) async{
     var box = Hive.box<Joke>('Joke');
 
-    box.add(await event.likes);
-    emit(state.copyWith(event.next, getHttp()));
+    box.add(await state.jokeOnFront);
+    emit(state.copyWith(state.jokeOnBack, getHttp(), state.nextImage));
   }
 
   Future<void> _skipJoke(SkipJoke event, Emitter<JokeState> emit) async {
-    emit(state.copyWith(event.next, getHttp()));
+    emit(state.copyWith(state.jokeOnBack, getHttp(), state.nextImage));
   }
 
 

@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../consts/assets_path.dart';
 import '../main.dart';
 import '../model/Joke.dart';
 import 'favorite.dart';
@@ -74,54 +75,11 @@ class JokePage extends StatefulWidget {
 }
 
 class _JokePageState extends State<JokePage> {
-  late Future<Joke> information1;
-  late Future<Joke> information2;
-  late List<Future<Joke>> favoriteJoke;
-  late int count = 0;
-  static const List<String> images = [
-    "assets/images/chuck1.jpg",
-    "assets/images/chuck2.jpg",
-    "assets/images/chuck3.jpg",
-    "assets/images/chuck4.jpg",
-  ];
-  late int position, next;
 
   @override
   void initState() {
     super.initState();
-    // information1 = getHttp();
-    // information2 = getHttp();
-    position = Random().nextInt(4);
-    next = Random().nextInt(4);
-    favoriteJoke = [];
   }
-
-
-  // void update(bool fav) async  {
-  //   position = next;
-  //   next = Random().nextInt(4);
-  //   if(fav){
-  //     Box box = Boxes.getLikedJokes();
-  //     final like = (count % 2 == 0) ? information1 : information2;
-  //
-  //     box.add(await like);
-  //     print("After ADD: \n");
-  //     print(box.values);
-  //     print("\n");
-  //     favoriteJoke.add((count % 2 == 0) ? information1 : information2);
-  //   }
-  //   print(favoriteJoke.length);
-  //   print(favoriteJoke);
-  //   setState(() {
-  //     if (count % 2 == 0) {
-  //       information1 = getHttp();
-  //     } else {
-  //       information2 = getHttp();
-  //     }
-  //     count++;
-  //   });
-  // }
-
 
   @override
   Widget build(BuildContext context) {
@@ -132,33 +90,30 @@ class _JokePageState extends State<JokePage> {
         BlocBuilder<JokeBloc, JokeState>(
           bloc: jokeBloc,
           builder: (context, state) {
-            final jokeOnFront = state.first;
-            final jokeOnBack = state.second;
+            final jokeOnFront = state.jokeOnFront;
+            final jokeOnBack = state.jokeOnBack;
+            final count = state.count;
+            final current = state.currentImage;
+            final next = state.nextImage;
             return Stack(
               children: [
                 Information(
                   information: jokeOnBack,
                   color: next,
-                  path: images[next],
+                  path: IMAGES[next],
                 ),
                 Dismissible(
                   key: Key("$count"),
                   child: Information(
                     information: jokeOnFront,
-                    color: position,
-                    path: images[position],
+                    color: current,
+                    path: IMAGES[current],
                   ),
                   onDismissed: (DismissDirection direction) {
                     if (direction == DismissDirection.startToEnd) {
-                      jokeBloc.add(SkipJoke(next: jokeOnBack));
-                      // update(false);
+                      jokeBloc.add(SkipJoke());
                     } else {
-                      jokeBloc.add(AddJoke(
-                          likes: jokeOnFront,
-                          next: jokeOnBack,
-                      )
-                      );
-                      // update(true);
+                      jokeBloc.add(AddJoke());
                     }
                   },
                 ),

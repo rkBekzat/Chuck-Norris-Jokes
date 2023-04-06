@@ -22,7 +22,7 @@ class BottomPart extends StatelessWidget {
             borderRadius: BorderRadius.circular(15),
           ),
           child: ElevatedButton(
-            onPressed: () => {  },
+            onPressed: () => { jokeBloc.add(AddJoke()) },
             style: ButtonStyle(
                 shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                     RoundedRectangleBorder(
