@@ -16,6 +16,10 @@ __Chuck Norris jokes__
 
 This is the Flutter application which show image of the Chunk Norris and his joke. The app based on tinder appliction idea where you can swipe to  left if like and to right if it's not interesting, also  in bottom align two buttons like and dislike. In appbar I align the buttons which show dialog and information about me. 
 
+--- 
+### Updates
+
+Implemented bottom navigation bar, where have two pages. First page is main page where show Chuck Norris jokes, second page show list of liked jokes.
 
 ## Images 
 
@@ -36,6 +40,8 @@ This is the Flutter application which show image of the Chunk Norris and his jok
 - [json_serializable](https://pub.dev/packages/json_serializable) - This library used to serialize JSON data into a model object. 
 - [flutter_lints](https://pub.dev/packages/flutter_lints) - This library detect warnings and report them to the user.
 - [build_runner](https://pub.dev/packages/build_runner) - This library used to generate __Joke.g.dart__ file.
+- [hive](https://pub.dev/packages/hive) - This library used to store data in local storage.
+- [flutter_bloc](https://pub.dev/packages/flutter_bloc) - This library is used to split UI and logic of application
 
 ## Code 
 
