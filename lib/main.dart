@@ -1,3 +1,4 @@
+import 'package:courses/bloc/internet_cubit.dart';
 import 'package:courses/model/Joke.dart';
 import 'package:courses/screen/home.dart';
 import 'package:flutter/material.dart';
@@ -25,8 +26,15 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primaryColor: Colors.lightBlue),
-      home: BlocProvider<JokeBloc>(
-        create: (context) => JokeBloc(),
+      home: MultiBlocProvider(
+        providers: [
+          BlocProvider<JokeBloc>(
+            create: (context) => JokeBloc(),
+          ),
+          BlocProvider(
+            create: (context) => InternetCubit()..checkConnection(),
+          ),
+        ],
         child: Home(),
       ),
     );

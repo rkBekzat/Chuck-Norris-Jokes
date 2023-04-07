@@ -54,6 +54,7 @@ dev_dependencies:
   flutter_bloc: ^8.0.1
   build_runner: ^2.3.3
   json_serializable: ^6.6.1
+  connectivity_plus: ^3.0.3
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

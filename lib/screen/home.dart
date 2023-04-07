@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:math';
 
+import 'package:courses/bloc/internet_cubit.dart';
 import 'package:courses/bloc/joke_bloc.dart';
 import 'package:courses/functions/get_joke.dart';
 import 'package:courses/model/Joke.dart';
@@ -83,6 +84,27 @@ class _JokePageState extends State<JokePage> {
 
   @override
   Widget build(BuildContext context) {
+    return BlocConsumer<InternetCubit, InternetState>(
+      listener: (context, state) {
+        if (state is NotConnectedState) {
+          ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text('Internet not connected'),
+                backgroundColor: Colors.red,
+              ),
+          );
+        }
+      },
+      builder: (context, state) {
+        if( state is ConnectedState) {
+          return buildWidget(context);
+        }
+        return Container();
+      },
+    );
+  }
+
+  Widget buildWidget(BuildContext context){
     final jokeBloc = BlocProvider.of<JokeBloc>(context);
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -125,4 +147,5 @@ class _JokePageState extends State<JokePage> {
       ],
     );
   }
+
 }
