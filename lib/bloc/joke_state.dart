@@ -21,7 +21,7 @@ class JokeState {
 }
 
 class JokeInitial extends JokeState{
-  JokeInitial() : super(jokeOnFront: getHttp(), jokeOnBack: getHttp(), count: 0, currentImage: Random().nextInt(4), nextImage: Random().nextInt(4));
+  JokeInitial() : super(jokeOnFront: getRandomJoke(), jokeOnBack: getRandomJoke(), count: 0, currentImage: Random().nextInt(4), nextImage: Random().nextInt(4));
 }
 
 class JokeUpdateState extends JokeState {

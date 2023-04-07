@@ -2,9 +2,22 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import '../model/Joke.dart';
 
-Future<Joke> getHttp() async {
+Future<Joke> getRandomJoke()  {
+  final uri = Uri.https('api.chucknorris.io', '/jokes/random');
+  return getResponse(uri);
+}
+
+Future<Joke> getCategory(String category)  {
+  final queryParams = {
+    'category' : category,
+  };
+  final uri = Uri.https('api.chucknorris.io', 'jokes', queryParams);
+  return getResponse(uri);
+}
+
+Future<Joke> getResponse(final uri) async {
   var response =
-  await http.get(Uri.https('api.chucknorris.io', '/jokes/random'));
+      await http.get(uri);
   if (response.statusCode == 200) {
     var result = jsonDecode(response.body);
     return Joke.fromJson(result);

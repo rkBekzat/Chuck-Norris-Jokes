@@ -1,5 +1,4 @@
 import 'package:courses/model/Joke.dart';
-import 'package:courses/screen/widget/boxes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
@@ -13,7 +12,7 @@ class LikeJoke extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: ValueListenableBuilder<Box<Joke>>(
-        valueListenable: Boxes.getLikedJokes().listenable(),
+        valueListenable: Hive.box<Joke>('Joke').listenable(),
         builder: (context, box, _){
           final likes = box.values.toList().cast<Joke>();
           print("LISTS:\n");

@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
             create: (context) => JokeBloc(),
           ),
           BlocProvider(
-            create: (context) => InternetCubit()..checkConnection(),
+            create: (_) => InternetCubit(),
           ),
         ],
         child: Home(),

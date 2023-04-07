@@ -1,21 +1,12 @@
-import 'dart:async';
-import 'dart:math';
-
 import 'package:courses/bloc/internet_cubit.dart';
 import 'package:courses/bloc/joke_bloc.dart';
-import 'package:courses/functions/get_joke.dart';
-import 'package:courses/model/Joke.dart';
 import 'package:courses/screen/widget/bottom.dart';
-import 'package:courses/screen/widget/boxes.dart';
 import 'package:courses/screen/widget/dialog_button.dart';
 import 'package:courses/screen/widget/information.dart';
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../consts/assets_path.dart';
-import '../main.dart';
-import '../model/Joke.dart';
+import '../const/variables.dart';
 import 'favorite.dart';
 
 class Home extends StatefulWidget {
@@ -99,7 +90,7 @@ class _JokePageState extends State<JokePage> {
         if( state is ConnectedState) {
           return buildWidget(context);
         }
-        return Container();
+        return Container(child: Text(state.toString()),);
       },
     );
   }
