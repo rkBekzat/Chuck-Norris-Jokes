@@ -12,3 +12,10 @@ class CategoryJokeEvent extends JokeEvent {
 
   CategoryJokeEvent({ required this.category});
 }
+
+class SearchedJokeEvent extends JokeEvent{
+  final String text;
+
+  SearchedJokeEvent({required this.text});
+
+}

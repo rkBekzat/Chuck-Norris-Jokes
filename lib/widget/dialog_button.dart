@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../bloc/joke_bloc.dart';
 import '../../const/variables.dart';
 
 class MyDialog extends StatelessWidget {
-  const MyDialog({Key? key}) : super(key: key);
+
+  final JokeBloc jokeBloc;
+
+  const MyDialog({Key? key, required this.jokeBloc}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -50,14 +55,22 @@ class MyDialog extends StatelessWidget {
   }
 
   Widget ShowCategory(){
-    return ListView.builder(
+
+    // final jokeBloc = BlocProvider.of<JokeBloc>(context);
+    return BlocProvider<JokeBloc>(
+      create: (context) => JokeBloc(),
+      child: ListView.builder(
         itemCount: CATEGORIES.length,
         itemBuilder: (context, index) {
-          return ElevatedButton(
-              onPressed: () {},
-              child: Text(CATEGORIES[index]));
+          return ListTile(
+              onTap: () {
+                jokeBloc.add(CategoryJokeEvent(category: CATEGORIES[index]));
+                Navigator.pop(context);
+                },
+              title: Text(CATEGORIES[index]));
         }
-    );
+    ),
+);
   }
 
 }

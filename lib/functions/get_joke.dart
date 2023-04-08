@@ -8,10 +8,12 @@ Future<Joke> getRandomJoke()  {
 }
 
 Future<Joke> getCategory(String category)  {
-  final queryParams = {
-    'category' : category,
-  };
-  final uri = Uri.https('api.chucknorris.io', 'jokes', queryParams);
+  final uri = Uri.https('api.chucknorris.io', 'jokes/random',  {'category' : category,});
+  return getResponse(uri);
+}
+
+Future<Joke> getSearched(String text){
+  final uri = Uri.https('api.chucknorris.io', 'jokes/search', {'query' : text});
   return getResponse(uri);
 }
 
