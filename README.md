@@ -19,14 +19,16 @@ This is the Flutter application which show image of the Chunk Norris and his jok
 --- 
 ### Updates
 
-Implemented bottom navigation bar, where have two pages. First page is main page where show Chuck Norris jokes, this jokes was fetched using api. Second page show list of liked jokes.
+Implemented bottom navigation bar, where have two pages. First page is main page where show Chuck Norris jokes, this jokes was fetched using api. Second page show list of liked jokes. 
+
+When you click on the appbar button language the app translate static words to russian languages, and clicking again app switch to the enlish language.  
 
 ## Images 
 
 
-|                    Scrolling jokes                     |                        page                        |                       dialog                     |
-|:------------------------------------------------------:|:--------------------------------------------------------:|:----------------------------------------------------------------:|
-| <img src="https://i.ibb.co/1Z2rYfN/app3.jpg" alt="Scrolling"> | <img src="https://i.ibb.co/3cpGNRm/app2.jpg" alt="page"> | <img src="https://i.ibb.co/vLXndWC/app4.jpg" alt="dailog"> |
+|                   Jokes                           |                        Categories              |                       dialog                   |     Liked jokes                    |   App icon
+|:-------------------------------------------------:|:----------------------------------------------:|:----------------------------------------------:|:----------------------------------:|:------------------------------------------------:
+| <img src="assets/demo/first.jpg" alt="Scrolling"> | <img src="assets/demo/second.jpg" alt="page">  | <img src="assets/demo/third.jpg" alt="dailog"> | <img src="assets/demo/fourth.jpg"> | <img src="assets/demo/fifth.jpg" >
 
 
 <!-- ![](https://i.ibb.co/9tFNKym/app1.jpg) ![](https://i.ibb.co/3cpGNRm/app2.jpg) ![](https://i.ibb.co/1Z2rYfN/app3.jpg) ![](https://i.ibb.co/vLXndWC/app4.jpg) -->
@@ -42,39 +44,14 @@ Implemented bottom navigation bar, where have two pages. First page is main page
 - [build_runner](https://pub.dev/packages/build_runner) - This library used to generate __Joke.g.dart__ file.
 - [hive](https://pub.dev/packages/hive) - This library used to store data in local storage.
 - [flutter_bloc](https://pub.dev/packages/flutter_bloc) - This library is used to split UI and logic of application
+- [easy_localization](https://pub.dev/packages/easy_localization) - This library is used to locolize text in local language
 
-## Code 
-
-
-___Fetch data with http lib___ 
-```
-Future<Joke> getHttp() async {
-  var response =
-      await http.get(Uri.https('api.chucknorris.io', '/jokes/random'));
-  if (response.statusCode == 200) {
-    var result = jsonDecode(response.body);
-    return Joke.fromJson(result);
-  } else {
-    throw Exception("Bad connection try again");
-  }
-}
-```
-
-Result will json which contains this properties:
-```
-var categories = [];
-var created_at = "";
-var icon_url = "";
-var id = "";
-var updated_at = "";
-var url = "";
-var value = "";
-```
 
 ## Architecture and state management 
 
 I used bloc state management and my architecture based on the following [repository](https://github.com/brianegan/flutter_architecture_samples/tree/master/bloc_library/lib).  To store constants I referenced to [this](https://stackoverflow.com/questions/54069239/whats-the-best-practice-to-keep-all-the-constants-in-flutter). 
 
+
 ## APK
 
-[release-apk](https://github.com/rkBekzat/Assignment1/apk-release.apk)
+[release-apk]()
