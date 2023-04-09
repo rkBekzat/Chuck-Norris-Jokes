@@ -13,3 +13,8 @@ class CategoryJokeEvent extends JokeEvent {
   CategoryJokeEvent({required this.category});
 }
 
+class DeleteJokeEvent extends JokeEvent {
+  final Joke joke ;
+
+  DeleteJokeEvent(this.joke);
+}

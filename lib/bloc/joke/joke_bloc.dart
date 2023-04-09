@@ -15,6 +15,7 @@ class JokeBloc extends Bloc<JokeEvent, JokeState> {
     on<AddJoke>(_addJoke);
     on<SkipJoke>(_skipJoke);
     on<CategoryJokeEvent>(_showCategoryJoke);
+    on<DeleteJokeEvent>(_deleteJoke);
   }
 
   _addJoke(AddJoke event, Emitter<JokeState> emit) async {
@@ -32,4 +33,19 @@ class JokeBloc extends Bloc<JokeEvent, JokeState> {
   _skipJoke(SkipJoke event, Emitter<JokeState> emit) async {
     emit(state.copyWith(state.jokeOnBack, getRandomJoke(), state.nextImage));
   }
+
+  _deleteJoke(DeleteJokeEvent event, Emitter<JokeState> emit) async {
+    var box = Hive.box<Joke>('Joke');
+
+    final Map<dynamic, Joke> deliveriesMap = box.toMap();
+    dynamic desiredKey;
+    deliveriesMap.forEach((key, value){
+      if (value == event.joke) {
+        desiredKey = key;
+      }
+    });
+    box.delete(desiredKey);
+
+  }
+
 }
