@@ -9,7 +9,6 @@ __Chuck Norris jokes__
 - [Description](#description)
 - [Images](#Demo)
 - [Library](#library)
-- [Code](#code)
 - [APK](#APK)
 
 ## Description
@@ -20,8 +19,10 @@ This is the Flutter application which show image of the Chunk Norris and his jok
 ### Updates
 
 Implemented bottom navigation bar, where have two pages. First page is main page where show Chuck Norris jokes, this jokes was fetched using api. Second page show list of liked jokes. 
+In liked pages you can also delete liked jokes by swipe.
 
 When you click on the appbar button language the app translate static words to russian languages, and clicking again app switch to the enlish language.  
+
 
 ## Images 
 

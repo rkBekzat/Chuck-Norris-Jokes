@@ -23,8 +23,8 @@ Future main() async {
     EasyLocalization(
         supportedLocales: const [Locale('en'), Locale('ru')],
         path: 'assets/translations',
-        fallbackLocale: Locale('en'),
-        assetLoader: CodegenLoader(),
+        fallbackLocale: const Locale('en'),
+        assetLoader: const CodegenLoader(),
         child: const MyApp()
     ),
   );

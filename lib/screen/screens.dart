@@ -45,31 +45,34 @@ class _HomeState extends State<Home> {
         ],
         leading: IconButton(
           onPressed: () {
-            if (context.locale == Locale('ru')) {
-              context.setLocale(Locale('en'));
+            if (context.locale == const Locale('ru')) {
+              context.setLocale(const Locale('en'));
             } else {
-              context.setLocale(Locale('ru'));
+              context.setLocale(const Locale('ru'));
             }
             setState(() {
 
             });
           },
-          icon: Icon(Icons.language),
+          icon: const Icon(Icons.language),
         ),
-        title:  Text(LocaleKeys.Chucks_joke.tr()),
+        title: Text(LocaleKeys.Chucks_joke.tr()),
       ),
-      body: buildBody.elementAt(index),
+      body: BlocProvider.value(
+        value: jokeBloc,
+        child: buildBody.elementAt(index),
+      ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: index,
         unselectedItemColor: Colors.indigoAccent,
         onTap: choose,
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: const Icon(Icons.home),
             label: LocaleKeys.home.tr(),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.monitor_heart),
+            icon: const Icon(Icons.monitor_heart),
             label: LocaleKeys.Liked.tr(),
           ),
         ],
