@@ -9,6 +9,7 @@ __Chuck Norris jokes__
 - [Description](#description)
 - [Images](#Demo)
 - [Library](#library)
+- [Architecture](#Architecture)
 - [APK](#APK)
 
 ## Description
@@ -55,4 +56,4 @@ I used bloc state management and my architecture based on the following [reposit
 
 ## APK
 
-[release-apk]()
+[release-apk](https://github.com/rkBekzat/Chuck-Norris-Jokes/blob/main/app-release.apk)
