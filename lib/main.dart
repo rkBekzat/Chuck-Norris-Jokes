@@ -15,7 +15,6 @@ Future main() async {
   Hive.registerAdapter(JokeAdapter());
   await Hive.openBox<Joke>("Joke");
 
-
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
 
@@ -25,8 +24,7 @@ Future main() async {
         path: 'assets/translations',
         fallbackLocale: const Locale('en'),
         assetLoader: const CodegenLoader(),
-        child: const MyApp()
-    ),
+        child: const MyApp()),
   );
 }
 

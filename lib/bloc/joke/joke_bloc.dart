@@ -39,13 +39,11 @@ class JokeBloc extends Bloc<JokeEvent, JokeState> {
 
     final Map<dynamic, Joke> deliveriesMap = box.toMap();
     dynamic desiredKey;
-    deliveriesMap.forEach((key, value){
+    deliveriesMap.forEach((key, value) {
       if (value == event.joke) {
         desiredKey = key;
       }
     });
     box.delete(desiredKey);
-
   }
-
 }

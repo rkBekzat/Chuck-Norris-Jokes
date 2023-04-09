@@ -6,9 +6,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import '../bloc/joke/joke_bloc.dart';
 
 class LikeJoke extends StatelessWidget {
-  const LikeJoke
-
-  ({super.key});
+  const LikeJoke({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -37,16 +35,14 @@ class LikeJoke extends StatelessWidget {
                       child: Text(likes[index].value),
                     ),
                     onDismissed: (direction) {
-                      BlocProvider.of<JokeBloc>(context).add(
-                          DeleteJokeEvent(likes[index]));
+                      BlocProvider.of<JokeBloc>(context)
+                          .add(DeleteJokeEvent(likes[index]));
                     },
                   );
-                }
-            );
+                });
           },
         );
       },
     );
   }
-
 }

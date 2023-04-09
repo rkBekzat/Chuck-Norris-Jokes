@@ -65,8 +65,8 @@ class MyDialog extends StatelessWidget {
           itemBuilder: (context, index) {
             return ListTile(
                 onTap: () {
-                  jokeBloc
-                      .add(CategoryJokeEvent(category: constants.categoriesConst[index]));
+                  jokeBloc.add(CategoryJokeEvent(
+                      category: constants.categoriesConst[index]));
                   Navigator.pop(context);
                 },
                 title: Text(constants.categoriesConst[index]));

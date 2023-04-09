@@ -6,25 +6,28 @@ import 'dart:ui';
 
 import 'package:easy_localization/easy_localization.dart' show AssetLoader;
 
-class CodegenLoader extends AssetLoader{
+class CodegenLoader extends AssetLoader {
   const CodegenLoader();
 
   @override
-  Future<Map<String, dynamic>> load(String fullPath, Locale locale ) {
+  Future<Map<String, dynamic>> load(String fullPath, Locale locale) {
     return Future.value(mapLocales[locale.toString()]);
   }
 
-  static const Map<String,dynamic> en = {
-  "home": "home",
-  "Liked": "liked",
-  "Chucks_joke": "Chukcs joke",
-  "close": "close"
-};
-static const Map<String,dynamic> ru = {
-  "home": "Главный",
-  "Liked": "любимый",
-  "Chucks_joke": "Шутки Чака",
-  "close": "закрыть"
-};
-static const Map<String, Map<String,dynamic>> mapLocales = {"en": en, "ru": ru};
+  static const Map<String, dynamic> en = {
+    "home": "home",
+    "liked": "liked",
+    "chucksJoke": "Chukcs joke",
+    "close": "close"
+  };
+  static const Map<String, dynamic> ru = {
+    "home": "Главный",
+    "liked": "любимый",
+    "chucksJoke": "Шутки Чака",
+    "close": "закрыть"
+  };
+  static const Map<String, Map<String, dynamic>> mapLocales = {
+    "en": en,
+    "ru": ru
+  };
 }

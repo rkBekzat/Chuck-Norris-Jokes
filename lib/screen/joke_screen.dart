@@ -42,13 +42,15 @@ class _JokePageState extends State<JokePage> {
     );
   }
 
-  Widget offlineWidget(){
+  Widget offlineWidget() {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: const [
           Icon(Icons.network_check),
-          SizedBox(height: 10,),
+          SizedBox(
+            height: 10,
+          ),
           Text("Internet not connected"),
         ],
       ),

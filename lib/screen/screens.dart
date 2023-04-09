@@ -50,13 +50,11 @@ class _HomeState extends State<Home> {
             } else {
               context.setLocale(const Locale('ru'));
             }
-            setState(() {
-
-            });
+            setState(() {});
           },
           icon: const Icon(Icons.language),
         ),
-        title: Text(LocaleKeys.Chucks_joke.tr()),
+        title: Text(LocaleKeys.chucksJoke.tr()),
       ),
       body: BlocProvider.value(
         value: jokeBloc,
@@ -73,7 +71,7 @@ class _HomeState extends State<Home> {
           ),
           BottomNavigationBarItem(
             icon: const Icon(Icons.monitor_heart),
-            label: LocaleKeys.Liked.tr(),
+            label: LocaleKeys.liked.tr(),
           ),
         ],
       ),

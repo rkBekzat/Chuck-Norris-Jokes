@@ -14,7 +14,7 @@ class CategoryJokeEvent extends JokeEvent {
 }
 
 class DeleteJokeEvent extends JokeEvent {
-  final Joke joke ;
+  final Joke joke;
 
   DeleteJokeEvent(this.joke);
 }
