@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../bloc/joke_bloc.dart';
-
+import '../bloc/joke/joke_bloc.dart';
 
 class BottomPart extends StatelessWidget {
-
   const BottomPart({Key? key}) : super(key: key);
 
   @override
@@ -22,7 +20,7 @@ class BottomPart extends StatelessWidget {
             borderRadius: BorderRadius.circular(15),
           ),
           child: ElevatedButton(
-            onPressed: () => { jokeBloc.add(AddJoke()) },
+            onPressed: () => {jokeBloc.add(AddJoke())},
             style: ButtonStyle(
                 shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                     RoundedRectangleBorder(
@@ -48,7 +46,7 @@ class BottomPart extends StatelessWidget {
             borderRadius: BorderRadius.circular(15),
           ),
           child: ElevatedButton(
-            onPressed: () => { jokeBloc.add(SkipJoke()) },
+            onPressed: () => {jokeBloc.add(SkipJoke())},
             style: ButtonStyle(
                 shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                     RoundedRectangleBorder(

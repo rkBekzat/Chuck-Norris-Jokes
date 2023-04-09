@@ -1,7 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:hive/hive.dart';
 
-part 'Joke.g.dart';
+part 'joke.g.dart';
 
 @JsonSerializable(fieldRename: FieldRename.snake)
 @HiveType(typeId: 0)
@@ -9,17 +9,17 @@ class Joke {
   @HiveField(0)
   final List<String> categories;
   @HiveField(1)
-  final String createdAt ;
+  final String createdAt;
   @HiveField(2)
-  final String iconUrl ;
+  final String iconUrl;
   @HiveField(3)
-  final String id ;
+  final String id;
   @HiveField(4)
-  final String updatedAt ;
+  final String updatedAt;
   @HiveField(5)
-  final String url ;
+  final String url;
   @HiveField(6)
-  final String value ;
+  final String value;
 
   Joke(
       {required this.categories,

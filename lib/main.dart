@@ -1,13 +1,10 @@
-import 'package:courses/bloc/internet_cubit.dart';
-import 'package:courses/model/Joke.dart';
-import 'package:courses/screen/home.dart';
+import 'package:courses/bloc/internet/internet_cubit.dart';
+import 'package:courses/model/joke.dart';
+import 'package:courses/screen/screens.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'bloc/joke_bloc.dart';
-import 'model/Joke.dart';
-import 'package:hive/hive.dart';
+import 'bloc/joke/joke_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -35,7 +32,7 @@ class MyApp extends StatelessWidget {
             create: (_) => InternetCubit(),
           ),
         ],
-        child: Home(),
+        child: const Home(),
       ),
     );
   }

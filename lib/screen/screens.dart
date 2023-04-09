@@ -1,9 +1,9 @@
-import 'package:courses/bloc/joke_bloc.dart';
+import 'package:courses/bloc/joke/joke_bloc.dart';
 import 'package:courses/widget/dialog_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'JokePage.dart';
-import 'favorite.dart';
+import 'joke_screen.dart';
+import 'favorite_screen.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -13,10 +13,9 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-
   List<Widget> buildBody = <Widget>[
-    JokePage(),
-    LikeJoke(),
+    const JokePage(),
+    const LikeJoke(),
   ];
   int index = 0;
 
@@ -37,7 +36,10 @@ class _HomeState extends State<Home> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        actions: [MyDialog(jokeBloc: jokeBloc,),
+        actions: [
+          MyDialog(
+            jokeBloc: jokeBloc,
+          ),
         ],
         title: const Text('Chucks joke'),
       ),
@@ -46,7 +48,7 @@ class _HomeState extends State<Home> {
         currentIndex: index,
         unselectedItemColor: Colors.indigoAccent,
         onTap: choose,
-        items: [
+        items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'home',

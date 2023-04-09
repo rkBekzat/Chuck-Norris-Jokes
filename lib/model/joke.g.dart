@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'Joke.dart';
+part of 'joke.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator

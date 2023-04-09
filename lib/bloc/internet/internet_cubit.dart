@@ -1,17 +1,20 @@
 import 'dart:async';
 
-import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'internet_state.dart';
 
 class InternetCubit extends Cubit<InternetState> {
   late final StreamSubscription _subscription;
 
-  InternetCubit() : super(InternetInitial()){
-    _subscription = Connectivity().onConnectivityChanged.listen((ConnectivityResult event) {
-      if (event == ConnectivityResult.wifi || event == ConnectivityResult.mobile || event == ConnectivityResult.ethernet) {
+  InternetCubit() : super(InternetInitial()) {
+    _subscription =
+        Connectivity().onConnectivityChanged.listen((ConnectivityResult event) {
+      if (event == ConnectivityResult.wifi ||
+          event == ConnectivityResult.mobile ||
+          event == ConnectivityResult.ethernet) {
         connected();
       } else {
         notConnected();
@@ -19,11 +22,11 @@ class InternetCubit extends Cubit<InternetState> {
     });
   }
 
-  void connected(){
+  void connected() {
     emit(ConnectedState());
   }
 
-  void notConnected(){
+  void notConnected() {
     emit(NotConnectedState());
   }
 
@@ -32,5 +35,4 @@ class InternetCubit extends Cubit<InternetState> {
     _subscription.cancel();
     return super.close();
   }
-
 }

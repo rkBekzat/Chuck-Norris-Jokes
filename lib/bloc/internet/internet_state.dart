@@ -7,4 +7,4 @@ class InternetInitial extends InternetState {}
 
 class ConnectedState extends InternetState {}
 
-class NotConnectedState extends InternetState{}
+class NotConnectedState extends InternetState {}

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../model/Joke.dart';
+import '../../model/joke.dart';
 
 class Information extends StatelessWidget {
   final Future<Joke> information;
@@ -13,7 +13,11 @@ class Information extends StatelessWidget {
   final int color;
   final String path;
 
-  const Information({Key? key, required this.information, required this.color, required this.path})
+  const Information(
+      {Key? key,
+      required this.information,
+      required this.color,
+      required this.path})
       : super(key: key);
 
   @override
@@ -39,15 +43,15 @@ class Information extends StatelessWidget {
                 height: 20,
               ),
               FutureBuilder<Joke>(
-                  future: information,
-                  builder: (context, snapshot) {
-                    if (snapshot.hasData) {
-                      return Text(snapshot.data!.value);
-                    } else if (snapshot.hasError) {
-                      return Text('ERROR: ${snapshot.error}');
-                    }
-                    return const Text("Loading...");
-                  },
+                future: information,
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    return Text(snapshot.data!.value);
+                  } else if (snapshot.hasError) {
+                    return Text('ERROR: ${snapshot.error}');
+                  }
+                  return const Text("Loading...");
+                },
               ),
             ],
           ),

@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../bloc/joke_bloc.dart';
-import '../../const/variables.dart';
+import '../bloc/joke/joke_bloc.dart';
+import '../../assets/constants.dart' as Constants;
 
 class MyDialog extends StatelessWidget {
-
   final JokeBloc jokeBloc;
 
   const MyDialog({Key? key, required this.jokeBloc}) : super(key: key);
@@ -18,12 +17,13 @@ class MyDialog extends StatelessWidget {
           children: [
             IconButton(
               onPressed: () => showDialog(
-                context: context,
-                builder: (BuildContext context) => Dialog(
-                  child: ShowCategory(),
-                )
+                  context: context,
+                  builder: (BuildContext context) => Dialog(
+                        child: showCategory(),
+                      )),
+              icon: const Icon(
+                Icons.filter_alt_outlined,
               ),
-              icon: Icon(Icons.filter_alt_outlined,),
             ),
             IconButton(
                 onPressed: () => showDialog(
@@ -37,7 +37,7 @@ class MyDialog extends StatelessWidget {
                               children: [
                                 const Padding(
                                   padding: EdgeInsets.all(8.0),
-                                  child: Text(ABOUT),
+                                  child: Text(Constants.aboutConst),
                                 ),
                                 const SizedBox(
                                   height: 15,
@@ -54,23 +54,21 @@ class MyDialog extends StatelessWidget {
         ));
   }
 
-  Widget ShowCategory(){
-
+  Widget showCategory() {
     // final jokeBloc = BlocProvider.of<JokeBloc>(context);
     return BlocProvider<JokeBloc>(
       create: (context) => JokeBloc(),
       child: ListView.builder(
-        itemCount: CATEGORIES.length,
-        itemBuilder: (context, index) {
-          return ListTile(
-              onTap: () {
-                jokeBloc.add(CategoryJokeEvent(category: CATEGORIES[index]));
-                Navigator.pop(context);
+          itemCount: Constants.categoriesConst.length,
+          itemBuilder: (context, index) {
+            return ListTile(
+                onTap: () {
+                  jokeBloc
+                      .add(CategoryJokeEvent(category: Constants.categoriesConst[index]));
+                  Navigator.pop(context);
                 },
-              title: Text(CATEGORIES[index]));
-        }
-    ),
-);
+                title: Text(Constants.categoriesConst[index]));
+          }),
+    );
   }
-
 }

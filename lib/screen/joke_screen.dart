@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:courses/bloc/internet_cubit.dart';
-import 'package:courses/bloc/joke_bloc.dart';
-import 'package:courses/widget/bottom.dart';
-import 'package:courses/widget/information.dart';
+import 'package:courses/bloc/internet/internet_cubit.dart';
+import 'package:courses/bloc/joke/joke_bloc.dart';
+import 'package:courses/widget/bottom_buttons.dart';
+import 'package:courses/widget/joke_information.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../const/variables.dart';
-
+import '../const/constants.dart';
 
 class JokePage extends StatefulWidget {
   const JokePage({Key? key}) : super(key: key);
@@ -16,7 +15,6 @@ class JokePage extends StatefulWidget {
 }
 
 class _JokePageState extends State<JokePage> {
-
   @override
   void initState() {
     super.initState();
@@ -28,7 +26,7 @@ class _JokePageState extends State<JokePage> {
       listener: (context, state) {
         if (state is NotConnectedState) {
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
+            const SnackBar(
               content: Text('Internet not connected'),
               backgroundColor: Colors.red,
             ),
@@ -36,15 +34,15 @@ class _JokePageState extends State<JokePage> {
         }
       },
       builder: (context, state) {
-        if( state is ConnectedState) {
+        if (state is ConnectedState) {
           return buildWidget(context);
         }
-        return Container(child: Text(state.toString()),);
+        return Text(state.toString());
       },
     );
   }
 
-  Widget buildWidget(BuildContext context){
+  Widget buildWidget(BuildContext context) {
     final jokeBloc = BlocProvider.of<JokeBloc>(context);
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -62,14 +60,14 @@ class _JokePageState extends State<JokePage> {
                 Information(
                   information: jokeOnBack,
                   color: next,
-                  path: IMAGES[next],
+                  path: imagesConst[next],
                 ),
                 Dismissible(
                   key: Key("$count"),
                   child: Information(
                     information: jokeOnFront,
                     color: current,
-                    path: IMAGES[current],
+                    path: imagesConst[current],
                   ),
                   onDismissed: (DismissDirection direction) {
                     if (direction == DismissDirection.startToEnd) {
@@ -83,9 +81,8 @@ class _JokePageState extends State<JokePage> {
             );
           },
         ),
-        BottomPart(),
+        const BottomPart(),
       ],
     );
   }
-
 }
