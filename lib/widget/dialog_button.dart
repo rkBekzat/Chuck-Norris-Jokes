@@ -1,8 +1,10 @@
+import 'package:courses/generated/locale_keys.g.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../bloc/joke/joke_bloc.dart';
-import '../../assets/constants.dart' as Constants;
+import '../../assets/constants.dart' as constants;
 
 class MyDialog extends StatelessWidget {
   final JokeBloc jokeBloc;
@@ -37,14 +39,14 @@ class MyDialog extends StatelessWidget {
                               children: [
                                 const Padding(
                                   padding: EdgeInsets.all(8.0),
-                                  child: Text(Constants.aboutConst),
+                                  child: Text(constants.aboutConst),
                                 ),
                                 const SizedBox(
                                   height: 15,
                                 ),
                                 TextButton(
                                     onPressed: () => Navigator.pop(context),
-                                    child: const Text('Close')),
+                                    child: Text(LocaleKeys.close.tr())),
                               ],
                             ),
                           ),
@@ -59,15 +61,15 @@ class MyDialog extends StatelessWidget {
     return BlocProvider<JokeBloc>(
       create: (context) => JokeBloc(),
       child: ListView.builder(
-          itemCount: Constants.categoriesConst.length,
+          itemCount: constants.categoriesConst.length,
           itemBuilder: (context, index) {
             return ListTile(
                 onTap: () {
                   jokeBloc
-                      .add(CategoryJokeEvent(category: Constants.categoriesConst[index]));
+                      .add(CategoryJokeEvent(category: constants.categoriesConst[index]));
                   Navigator.pop(context);
                 },
-                title: Text(Constants.categoriesConst[index]));
+                title: Text(constants.categoriesConst[index]));
           }),
     );
   }

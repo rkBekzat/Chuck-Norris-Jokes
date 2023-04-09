@@ -1,10 +1,13 @@
 import 'package:courses/bloc/internet/internet_cubit.dart';
 import 'package:courses/model/joke.dart';
 import 'package:courses/screen/screens.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'bloc/joke/joke_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+
+import 'generated/codegen_loader.g.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -12,7 +15,19 @@ Future main() async {
   Hive.registerAdapter(JokeAdapter());
   await Hive.openBox<Joke>("Joke");
 
-  runApp(const MyApp());
+
+  WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
+
+  runApp(
+    EasyLocalization(
+        supportedLocales: const [Locale('en'), Locale('ru')],
+        path: 'assets/translations',
+        fallbackLocale: Locale('en'),
+        assetLoader: CodegenLoader(),
+        child: const MyApp()
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -21,6 +36,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales,
+      locale: context.locale,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primaryColor: Colors.lightBlue),
       home: MultiBlocProvider(

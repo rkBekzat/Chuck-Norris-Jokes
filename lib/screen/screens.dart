@@ -1,5 +1,7 @@
 import 'package:courses/bloc/joke/joke_bloc.dart';
+import 'package:courses/generated/locale_keys.g.dart';
 import 'package:courses/widget/dialog_button.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'joke_screen.dart';
@@ -41,21 +43,34 @@ class _HomeState extends State<Home> {
             jokeBloc: jokeBloc,
           ),
         ],
-        title: const Text('Chucks joke'),
+        leading: IconButton(
+          onPressed: () {
+            if (context.locale == Locale('ru')) {
+              context.setLocale(Locale('en'));
+            } else {
+              context.setLocale(Locale('ru'));
+            }
+            setState(() {
+
+            });
+          },
+          icon: Icon(Icons.language),
+        ),
+        title:  Text(LocaleKeys.Chucks_joke.tr()),
       ),
       body: buildBody.elementAt(index),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: index,
         unselectedItemColor: Colors.indigoAccent,
         onTap: choose,
-        items: const [
+        items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            label: 'home',
+            label: LocaleKeys.home.tr(),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.monitor_heart),
-            label: 'liked',
+            label: LocaleKeys.Liked.tr(),
           ),
         ],
       ),

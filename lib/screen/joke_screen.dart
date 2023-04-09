@@ -4,7 +4,7 @@ import 'package:courses/bloc/joke/joke_bloc.dart';
 import 'package:courses/widget/bottom_buttons.dart';
 import 'package:courses/widget/joke_information.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../const/constants.dart';
+import '../assets/constants.dart' as constants;
 
 class JokePage extends StatefulWidget {
   const JokePage({Key? key}) : super(key: key);
@@ -37,8 +37,21 @@ class _JokePageState extends State<JokePage> {
         if (state is ConnectedState) {
           return buildWidget(context);
         }
-        return Text(state.toString());
+        return offlineWidget();
       },
+    );
+  }
+
+  Widget offlineWidget(){
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: const [
+          Icon(Icons.network_check),
+          SizedBox(height: 10,),
+          Text("Internet not connected"),
+        ],
+      ),
     );
   }
 
@@ -60,14 +73,14 @@ class _JokePageState extends State<JokePage> {
                 Information(
                   information: jokeOnBack,
                   color: next,
-                  path: imagesConst[next],
+                  path: constants.imagesConst[next],
                 ),
                 Dismissible(
                   key: Key("$count"),
                   child: Information(
                     information: jokeOnFront,
                     color: current,
-                    path: imagesConst[current],
+                    path: constants.imagesConst[current],
                   ),
                   onDismissed: (DismissDirection direction) {
                     if (direction == DismissDirection.startToEnd) {
