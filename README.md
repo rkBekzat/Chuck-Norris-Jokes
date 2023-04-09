@@ -19,7 +19,7 @@ This is the Flutter application which show image of the Chunk Norris and his jok
 --- 
 ### Updates
 
-Implemented bottom navigation bar, where have two pages. First page is main page where show Chuck Norris jokes, second page show list of liked jokes.
+Implemented bottom navigation bar, where have two pages. First page is main page where show Chuck Norris jokes, this jokes was fetched using api. Second page show list of liked jokes.
 
 ## Images 
 
@@ -71,7 +71,9 @@ var url = "";
 var value = "";
 ```
 
+## Architecture and state management 
 
+I used bloc state management and my architecture based on the following [repository](https://github.com/brianegan/flutter_architecture_samples/tree/master/bloc_library/lib).  To store constants I referenced to [this](https://stackoverflow.com/questions/54069239/whats-the-best-practice-to-keep-all-the-constants-in-flutter). 
 
 ## APK
 
